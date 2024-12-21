@@ -7,14 +7,17 @@ import { CreateUserDto } from 'src/user/use-cases/create-user/create-user.dto';
 export class UserRepository {
   constructor(private readonly prismaService: PrismaService) { }
 
-  async findByEmail(email: string, omit?: Prisma.UserOmit) {
-    return this.prismaService.user.findUnique({ where: { email }, omit });
+  async findByEmail(email: string, select?: Prisma.UserSelect) {
+    return this.prismaService.user.findUnique({
+      where: { email },
+      select,
+    });
   }
 
-  async findById(id: string, omit?: Prisma.UserOmit) {
+  async findById(id: string, select?: Prisma.UserSelect) {
     return this.prismaService.user.findFirst({
       where: { id },
-      omit,
+      select,
     });
   }
 
@@ -24,9 +27,9 @@ export class UserRepository {
     });
   }
 
-  async list(omit?: Prisma.UserOmit) {
+  async list(select?: Prisma.UserSelect) {
     return this.prismaService.user.findMany({
-      omit,
+      select,
     });
   }
 }

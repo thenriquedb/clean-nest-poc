@@ -6,6 +6,11 @@ export class ListUsersService {
   constructor(private readonly userRepository: UserRepository) { }
 
   async execute() {
-    return this.userRepository.list();
+    return this.userRepository.list({
+      email: true,
+      name: true,
+      id: true,
+      password: false,
+    });
   }
 }

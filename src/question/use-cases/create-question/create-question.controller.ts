@@ -1,8 +1,9 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateQuestionDto } from 'src/question/use-cases/create-question/create-question.dto';
 import { CreateQuestionService } from 'src/question/use-cases/create-question/create-question.service';
 
+@ApiTags('Question')
 @Controller('question')
 export class CreateQuestionController {
   constructor(private readonly createQuestionService: CreateQuestionService) { }

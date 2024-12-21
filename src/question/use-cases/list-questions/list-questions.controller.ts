@@ -1,15 +1,16 @@
 import { Controller, Get } from '@nestjs/common';
-import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
-import { CreateQuestionDto } from 'src/question/use-cases/create-question/create-question.dto';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ListQuestionsService } from './list-questions.service';
+import { Question } from 'src/question/entities/Question';
 
+@ApiTags('Question')
 @Controller('question')
 export class ListQuestionsController {
   constructor(private readonly createQuestionService: ListQuestionsService) { }
 
   @Get()
-  @ApiOperation({ summary: 'Create a question' })
-  @ApiOkResponse({ type: CreateQuestionDto })
+  @ApiOperation({ summary: 'List all questions' })
+  @ApiOkResponse({ type: Question, isArray: true })
   async create() {
     return this.createQuestionService.execute();
   }
