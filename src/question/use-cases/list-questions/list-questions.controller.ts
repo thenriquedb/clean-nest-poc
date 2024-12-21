@@ -1,7 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ListQuestionsService } from './list-questions.service';
-import { Question } from 'src/question/entities/Question';
 import { ListQuestionsResponseDto } from './list-questions-response.dto';
 
 @ApiTags('Question')
