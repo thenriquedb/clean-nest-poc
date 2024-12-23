@@ -7,7 +7,7 @@ import {
   ApiParam,
   ApiTags,
 } from '@nestjs/swagger';
-import { User } from 'src/user/entities/User';
+import { User } from 'src/common/entities/User';
 
 @ApiTags('User')
 @Controller('user')

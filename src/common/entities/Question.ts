@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Question as PrismaQuestion } from '@prisma/client';
 
-export class Question {
+export class Question implements PrismaQuestion {
   @ApiProperty()
   id: string;
 
@@ -18,6 +19,9 @@ export class Question {
 
   @ApiProperty()
   createdAt: Date;
+
+  @ApiProperty()
+  author_name: string;
 
   @ApiProperty()
   updatedAt: Date;

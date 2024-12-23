@@ -1,6 +1,7 @@
+import { User as PrismaUser } from '@prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class User {
+export class User implements PrismaUser {
   @ApiProperty()
   id: string;
 

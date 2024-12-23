@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Question } from '@prisma/client';
 import { PrismaService } from 'src/common/database/prisma.service';
 import { CreateQuestionDto } from 'src/question/use-cases/create-question/create-question.dto';
 
@@ -12,7 +13,7 @@ export class QuestionRepository {
     });
   }
 
-  async list() {
+  async list(): Promise<Array<Question & { authorName: string }>> {
     return this.prismaService.$queryRaw`
         SELECT 
           questions.title,
@@ -21,9 +22,12 @@ export class QuestionRepository {
           questions.updated_at,
           questions.author_id,
           questions.slug,
-          users.name as author_name
+          users.name as authorName
         FROM questions 
         LEFT JOIN users ON questions.author_id = users.id
       `;
   }
 }
+
+const qr = new QuestionRepository(new PrismaService());
+qr.list().then(r => r[1].)

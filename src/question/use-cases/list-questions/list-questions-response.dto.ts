@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Question } from 'src/question/entities/Question';
+import { Question } from 'src/common/entities/Question';
 
 export class ListQuestionsResponseDto extends Question {
   @ApiProperty()
